@@ -35,9 +35,33 @@ Supported Operations & Examples
 #### Initialize
 
 ```java
+CoinPayments api = CoinPayments.builder()
+        .publicKey("<publicKey>")
+        .privateKey("<privateKey>")
+        .client(HttpClients.createDefault()).build();
+
+ResponseWrapper<BasicInfoResponse> accountInfo = api.sendRequest(new CoinPaymentsBasicAccountInfoRequest());
+log.info("Account: " + accountInfo.getResult());
 
 ```
 
+#### Create Transaction
+
+```java
+ResponseWrapper<CreateTransactionResponse> txResponse = api.sendRequest(CoinPaymentsCreateTransactionRequest.builder().amount(10)
+        .currencyPrice("USD")
+        .currencyTransfer("LTC")
+        .callbackUrl("<callback-url-if-wanted>")
+        .custom("Order XYZ")
+        .build());
+log.info(txResponse.getResult().getTransactionId() + " - " + txResponse.getResult().getStatusUrl());
+
+```
+
+
+**Do you like this project? Support it by donating**
+
+- ![btc](https://raw.githubusercontent.com/reek/anti-adblock-killer/gh-pages/images/bitcoin.png) Bitcoin: 3EN9KCzKunc1PQppBXUSa8UCBoncMXii5C
 
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
