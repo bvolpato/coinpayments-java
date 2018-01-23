@@ -38,7 +38,7 @@ public class RateResponse {
     private String rateBtc;
     
     @JsonProperty("last_update")
-    private long last_update;
+    private long lastUpdate;
     
     private int confirms;
     
