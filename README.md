@@ -4,7 +4,6 @@ coinpayments-java
 [![Apache License](http://img.shields.io/badge/license-ASL-blue.svg)](https://github.com/brunocvcunha/coinpayments-java/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/brunocvcunha/coinpayments-java.svg)](https://travis-ci.org/brunocvcunha/coinpayments-java)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments-java/coinpayments-java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments-java/coinpayments-java)
-[![Coverage Status](https://coveralls.io/repos/github/brunocvcunha/coinpayments-java/badge.svg?branch=master)](https://coveralls.io/github/brunocvcunha/coinpayments-java?branch=master)
 [![Code Climate](https://codeclimate.com/github/brunocvcunha/coinpayments-java/badges/gpa.svg)](https://codeclimate.com/github/brunocvcunha/coinpayments-java)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
