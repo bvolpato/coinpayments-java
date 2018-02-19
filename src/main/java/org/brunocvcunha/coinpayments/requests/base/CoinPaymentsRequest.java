@@ -97,7 +97,7 @@ public abstract class CoinPaymentsRequest<T> {
   ***REMOVED*****REMOVED*****REMOVED*** 
   ***REMOVED*****REMOVED*****REMOVED*** @param str
   ***REMOVED*****REMOVED*****REMOVED***            Entity content
-  ***REMOVED*****REMOVED*****REMOVED*** @param typeRef
+  ***REMOVED*****REMOVED*****REMOVED*** @param type
   ***REMOVED*****REMOVED*****REMOVED***            TypeReference
   ***REMOVED*****REMOVED*****REMOVED*** @return Result
   ***REMOVED*****REMOVED*****REMOVED***/
