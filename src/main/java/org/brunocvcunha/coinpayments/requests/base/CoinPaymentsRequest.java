@@ -97,7 +97,7 @@ public abstract class CoinPaymentsRequest<T> {
      * 
      * @param str
      *            Entity content
-     * @param typeRef
+     * @param type
      *            TypeReference
      * @return Result
      */
