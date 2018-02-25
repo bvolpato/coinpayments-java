@@ -103,22 +103,22 @@
 				<configuration>
 					<compilerId>javac-with-errorprone</compilerId>
 					<forceJavacCompilerUse>true</forceJavacCompilerUse>
-					<source>${java.version***REMOVED***</source>
-					<target>${java.version***REMOVED***</target>
-					<testSource>${java.version***REMOVED***</testSource>
-					<testTarget>${java.version***REMOVED***</testTarget>
-					<encoding>${project.build.sourceEncoding***REMOVED***</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<testSource>${java.version}</testSource>
+					<testTarget>${java.version}</testTarget>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>org.codehaus.plexus</groupId>
 						<artifactId>plexus-compiler-javac-errorprone</artifactId>
-						<version>${plexus.errorprone.version***REMOVED***</version>
+						<version>${plexus.errorprone.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>com.google.errorprone</groupId>
 						<artifactId>error_prone_core</artifactId>
-						<version>${google.errorprone.version***REMOVED***</version>
+						<version>${google.errorprone.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -127,7 +127,7 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.4.3</version>
 				<configuration>
-					<encoding>${project.build.sourceEncoding***REMOVED***</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -141,8 +141,8 @@
 						<email>brunocvcunha@gmail.com</email>
 					</properties>
 					<excludes>
-						<exclude>src/test/resources***REMOVED***</exclude>
-						<exclude>src/main/resources***REMOVED***</exclude>
+						<exclude>src/test/resources/**</exclude>
+						<exclude>src/main/resources/**</exclude>
 						<exclude>LICENSE</exclude>
 					</excludes>
 				</configuration>
@@ -160,7 +160,7 @@
 				<artifactId>coveralls-maven-plugin</artifactId>
 				<version>4.2.0</version>
 				<configuration>
-					<timestampFormat>${maven.build.timestamp.format***REMOVED***</timestampFormat>
+					<timestampFormat>${maven.build.timestamp.format}</timestampFormat>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -195,14 +195,14 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version***REMOVED***</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4j.version***REMOVED***</version>
+			<version>${log4j.version}</version>
 		</dependency>
 
 		<!-- Lombok -->
