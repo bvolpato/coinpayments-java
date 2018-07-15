@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocvcunha.coinpayments;
+package org.brunocvcunha.coinpayments.model;
 
-/**
- * 
- * Jiphy Constants
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
-public class CoinPaymentsConstants {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
-    /**
-     * API Base URL
-     */
-    public static final String API_URL = "https://www.coinpayments.net/api.php";
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreateWithdrawalRequest {
 
+    private String id;
+    private int status;
+    private double amount;
 }

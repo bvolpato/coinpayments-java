@@ -21,6 +21,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.log4j.Level;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsRequest;
 
 import lombok.Builder;
@@ -38,6 +39,10 @@ import lombok.extern.log4j.Log4j;
 @Builder
 @Log4j
 public class CoinPayments {
+
+    static {
+        log.setLevel( Level.WARN );
+    }
 
     @Getter
     @Setter

@@ -17,7 +17,7 @@ package org.brunocvcunha.coinpayments.requests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
-import org.brunocvcunha.coinpayments.model.AddressResponse;
+import org.brunocvcunha.coinpayments.model.CreateWithdrawalRequest;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
@@ -25,12 +25,25 @@ import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsGetCallbackAddressRequest extends CoinPaymentsPostRequest<ResponseWrapper<AddressResponse>> {
+public class CoinPaymentsCreateWithdrawalRequest extends CoinPaymentsPostRequest<ResponseWrapper<CreateWithdrawalRequest>> {
+
+    @NonNull
+    private double amount;
+
+    @Builder.Default private boolean addTransactionFee = false;
 
     @NonNull
     private String currency;
 
-    @Builder.Default private String IPNUrl = "";
+    @Builder.Default private String withdrawCurrency = "";
+
+    @NonNull
+    private String address;
+
+    @Builder.Default private String destinationTag = "";
+    @Builder.Default private String ipnURL = "";
+    @Builder.Default private boolean autoConfirm = true;
+    @Builder.Default private String note = "";
 
     @Override
     public String getUrl () {
@@ -39,13 +52,12 @@ public class CoinPaymentsGetCallbackAddressRequest extends CoinPaymentsPostReque
 
     @Override
     public String getPayload () {
-        return "cmd=get_callback_address" + "&currency=" + currency + "&ipn_url=" + IPNUrl;
+        return "cmd=create_withdrawal" + "&amount=" + amount + "&add_tx_fee=" + ( addTransactionFee ? 1 : 0 ) + "&currency=" + currency + "&currency2=" + withdrawCurrency + "&address=" + address + "&dest_tag=" + destinationTag + "&ipn_url=" + ipnURL + "&auto_confirm=" + ( autoConfirm ? 1 : 0 ) + "&note=" + note;
     }
 
     @Override
-    public ResponseWrapper<AddressResponse> parseResult ( int resultCode, String content ) {
-        ResponseWrapper<AddressResponse> wrapper = parseJson( content, new TypeReference<ResponseWrapper<AddressResponse>>() {} );
+    public ResponseWrapper<CreateWithdrawalRequest> parseResult ( int resultCode, String content ) {
+        ResponseWrapper<CreateWithdrawalRequest> wrapper = parseJson( content, new TypeReference<ResponseWrapper<CreateWithdrawalRequest>>() {} );
         return wrapper;
     }
-
 }
