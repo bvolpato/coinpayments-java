@@ -17,7 +17,6 @@ package org.brunocvcunha.coinpayments.requests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
-import org.brunocvcunha.coinpayments.model.GetTransactionListResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
@@ -27,7 +26,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsGetTransactionListRequest extends CoinPaymentsPostRequest<ResponseWrapper<List<GetTransactionListResponse>>> {
+public class CoinPaymentsGetTransactionListRequest extends CoinPaymentsPostRequest<ResponseWrapper<List<String>>> {
 
     @Builder.Default private int limit = 25;
 
@@ -35,7 +34,7 @@ public class CoinPaymentsGetTransactionListRequest extends CoinPaymentsPostReque
 
     @Builder.Default private int newer = 0;
 
-    @Builder.Default private int all = 1;
+    @Builder.Default private int all = 0;
 
     @Override
     public String getUrl () {
@@ -48,8 +47,8 @@ public class CoinPaymentsGetTransactionListRequest extends CoinPaymentsPostReque
     }
 
     @Override
-    public ResponseWrapper<List<GetTransactionListResponse>> parseResult ( int resultCode, String content ) {
-        ResponseWrapper<List<GetTransactionListResponse>> wrapper = parseJson( content, new TypeReference<ResponseWrapper<List<GetTransactionListResponse>>>() {} );
+    public ResponseWrapper<List<String>> parseResult ( int resultCode, String content ) {
+        ResponseWrapper<List<String>> wrapper = parseJson( content, new TypeReference<ResponseWrapper<List<String>>>() {} );
         return wrapper;
     }
 }
