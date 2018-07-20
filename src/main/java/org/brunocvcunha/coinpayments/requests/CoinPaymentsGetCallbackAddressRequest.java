@@ -15,45 +15,36 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
+import org.brunocvcunha.coinpayments.model.AddressResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
-import org.brunocvcunha.coinpayments.model.TransactionDetailsResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
-/**
- * CoinPaymentsCreateTransactionRequest
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsGetTransactionInfoRequest
-        extends CoinPaymentsPostRequest<ResponseWrapper<TransactionDetailsResponse>> {
+public class CoinPaymentsGetCallbackAddressRequest extends CoinPaymentsPostRequest<ResponseWrapper<AddressResponse>> {
 
-    private String txid;
+    @NonNull
+    private String currency;
+
+    @Builder.Default private String IPNUrl = "";
 
     @Override
-    public String getUrl() {
+    public String getUrl () {
         return "";
     }
 
     @Override
-    @SneakyThrows
-    public String getPayload() {
-        return "cmd=get_tx_info&txid=" + txid + "&full=1";
+    public String getPayload () {
+        return "cmd=get_callback_address" + "&currency=" + currency + "&ipn_url=" + IPNUrl;
     }
 
     @Override
-    @SneakyThrows
-    public ResponseWrapper<TransactionDetailsResponse> parseResult(int statusCode, String content) {
-        ResponseWrapper<TransactionDetailsResponse> wrapper = parseJson(content,
-                new TypeReference<ResponseWrapper<TransactionDetailsResponse>>() {
-                });
+    public ResponseWrapper<AddressResponse> parseResult ( int resultCode, String content ) {
+        ResponseWrapper<AddressResponse> wrapper = parseJson( content, new TypeReference<ResponseWrapper<AddressResponse>>() {} );
         return wrapper;
     }
 

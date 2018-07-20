@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import lombok.Builder;
 import org.brunocvcunha.coinpayments.model.BasicInfoResponse;
 import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
@@ -32,7 +33,7 @@ import lombok.SneakyThrows;
  * @author Bruno Candido Volpato da Cunha
  *
  */
-@RequiredArgsConstructor
+@Builder
 public class CoinPaymentsBasicAccountInfoRequest extends CoinPaymentsPostRequest<ResponseWrapper<BasicInfoResponse>> {
 
     @Override

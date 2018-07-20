@@ -17,16 +17,12 @@ package org.brunocvcunha.coinpayments.requests;
 
 import java.util.Map;
 
+import lombok.*;
 import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 
 /**
  * Search GIFs Request
@@ -37,6 +33,7 @@ import lombok.SneakyThrows;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
 
     private boolean onlyAccepted = true;
