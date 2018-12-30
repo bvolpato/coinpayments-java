@@ -36,4 +36,7 @@ public class BasicInfoResponse {
     
     private String email;
 
+    @JsonProperty("public_name")
+    private String publicName;
+
 }
