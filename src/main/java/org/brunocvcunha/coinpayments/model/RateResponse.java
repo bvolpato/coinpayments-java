@@ -15,6 +15,8 @@
  */
 package org.brunocvcunha.coinpayments.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -42,4 +44,9 @@ public class RateResponse {
     
     private int confirms;
     
+    @JsonProperty("tx_fee")
+    private double txFee;
+
+    private List<String> capabilities;
+
 }
