@@ -38,6 +38,8 @@ public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWr
 
     private boolean onlyAccepted = true;
     
+    private boolean onlyShort = false;
+
     @Override
     public String getUrl() {
         return "";
@@ -46,7 +48,7 @@ public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWr
     @Override
     @SneakyThrows
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0");
+        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
     }
 
 
