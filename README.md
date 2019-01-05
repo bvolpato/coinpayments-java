@@ -18,12 +18,12 @@ Download [the latest release JAR][1] or grab via Maven:
 <dependency>
   <groupId>org.brunocvcunha.coinpayments</groupId>
   <artifactId>coinpayments-java</artifactId>
-  <version>1.0</version>
+  <version>1.2</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'org.brunocvcunha.coinpayments:coinpayments-java:1.0'
+compile 'org.brunocvcunha.coinpayments:coinpayments-java:1.2'
 ```
 
 
