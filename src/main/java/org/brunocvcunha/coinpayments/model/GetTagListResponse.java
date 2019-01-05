@@ -20,23 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Search Result
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasicInfoResponse {
-    private String username;
-    
-    @JsonProperty("merchant_id")
-    private String merchantId;
-    
-    private String email;
+public class GetTagListResponse {
+	
+    private String tagid;
 
-    @JsonProperty("public_name")
-    private String publicName;
+    private String pbntag;
 
+    @JsonProperty("time_expires")
+    private long timeExpires;
 }

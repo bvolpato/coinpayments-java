@@ -15,48 +15,45 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
+import java.util.List;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
+import org.brunocvcunha.coinpayments.model.ClaimTagResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
-@RequiredArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsClaimTagRequest extends CoinPaymentsPostRequest<ResponseWrapper<List<ClaimTagResponse>>> {
+	
+	@NonNull
+	private String tagId;
+	
+	@NonNull
+	private String name;
+	
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
-
+	@Override
+	public String getUrl() {
+		return "";
+	}
+	
     @Override
-    public String getUrl() {
-        return "";
-    }
-    
-    @Override
-    @SneakyThrows
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+        return "cmd=claim_pbn_tag&tagid=" + tagId + "&name=" + name;
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<List<ClaimTagResponse>> parseResult(int resultCode, String content) {
+        ResponseWrapper<List<ClaimTagResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<List<ClaimTagResponse>>>() {});
         return wrapper;
-    }
+	}
 
 }

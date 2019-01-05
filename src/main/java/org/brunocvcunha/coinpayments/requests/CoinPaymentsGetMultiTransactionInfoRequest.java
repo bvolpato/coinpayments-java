@@ -15,48 +15,47 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
+import org.brunocvcunha.coinpayments.model.TransactionDetailsResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsGetMultiTransactionInfoRequest extends CoinPaymentsPostRequest<ResponseWrapper<List<TransactionDetailsResponse>>> {
+	
+	private List<String> txid = Arrays.asList(new String[25]);
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
-
-    @Override
-    public String getUrl() {
+	@Override
+	public String getUrl() {
         return "";
-    }
-    
+	}
+	
     @Override
     @SneakyThrows
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+    	String p = String.join("|", txid);
+        return "cmd=get_tx_info_multi&txid=" + p + "&full=1";
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<List<TransactionDetailsResponse>> parseResult(int resultCode, String content) {
+        ResponseWrapper<List<TransactionDetailsResponse>> wrapper = parseJson(content,
+                new TypeReference<ResponseWrapper<List<TransactionDetailsResponse>>>() {
+                });
         return wrapper;
-    }
+	}
 
 }

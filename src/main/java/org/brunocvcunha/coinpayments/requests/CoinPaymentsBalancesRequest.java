@@ -17,46 +17,45 @@ package org.brunocvcunha.coinpayments.requests;
 
 import java.util.Map;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
+import org.brunocvcunha.coinpayments.model.BalanceResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.SneakyThrows;
+
 /**
- * Search GIFs Request
+ * Balance Request
  * 
  * @author Bruno Candido Volpato da Cunha
  *
  */
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsBalancesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, BalanceResponse>>> {
+	
+	private boolean ifAll = false;
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
-
-    @Override
-    public String getUrl() {
-        return "";
-    }
+	@Override
+	public String getUrl() {
+		return "";
+	}
+	
     
     @Override
     @SneakyThrows
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+        return "cmd=balances&all=" + (ifAll ? "1" : "0");
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<Map<String, BalanceResponse>> parseResult(int resultCode, String content) {
+		System.out.println(content);
+        ResponseWrapper<Map<String, BalanceResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, BalanceResponse>>>() {});
         return wrapper;
-    }
+	}
 
 }

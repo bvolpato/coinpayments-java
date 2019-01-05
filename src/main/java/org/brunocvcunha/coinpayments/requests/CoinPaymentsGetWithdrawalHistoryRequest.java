@@ -17,46 +17,37 @@ package org.brunocvcunha.coinpayments.requests;
 
 import java.util.Map;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
+import org.brunocvcunha.coinpayments.model.WithdrawalHistoryResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
-@RequiredArgsConstructor
-@AllArgsConstructor
-@Data
+import lombok.Builder;
+
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsGetWithdrawalHistoryRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, WithdrawalHistoryResponse>>>  {
+	
+	@Builder.Default private int limit = 25;
+	
+	@Builder.Default private int start = 0;
+	
+	@Builder.Default private long newer = 0;
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
-
-    @Override
-    public String getUrl() {
-        return "";
-    }
-    
-    @Override
-    @SneakyThrows
+	@Override
+	public String getUrl() {
+		return "";
+	}
+	
+	@Override
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+        return "cmd=get_withdrawal_history" + "&limit=" + limit + "&start=" + start + "&newer=" + newer ;
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<Map<String, WithdrawalHistoryResponse>> parseResult(int resultCode, String content) {
+        ResponseWrapper<Map<String, WithdrawalHistoryResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, WithdrawalHistoryResponse>>>() {});
         return wrapper;
-    }
+	}
 
 }

@@ -15,48 +15,38 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.*;
+
+import java.util.List;
 import java.util.Map;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
+import org.brunocvcunha.coinpayments.model.CreateWithdrawalResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsCreateMassWithdrawalRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, CreateWithdrawalResponse>>> {
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
+    @NonNull
+    private List<Map<String, String>> wd;
+
 
     @Override
-    public String getUrl() {
+    public String getUrl () {
         return "";
     }
-    
+
     @Override
-    @SneakyThrows
-    public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+    public String getPayload () {
+        return "cmd=create_mass_withdrawal" + "&wd=" + wd;
     }
 
-
     @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+    public ResponseWrapper<Map<String, CreateWithdrawalResponse>> parseResult ( int resultCode, String content ) {
+    	ResponseWrapper<Map<String, CreateWithdrawalResponse>> wrapper = parseJson( content, new TypeReference<ResponseWrapper<Map<String, CreateWithdrawalResponse>>>() {});
         return wrapper;
     }
-
 }

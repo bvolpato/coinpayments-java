@@ -17,7 +17,7 @@ package org.brunocvcunha.coinpayments.requests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
-import org.brunocvcunha.coinpayments.model.CreateWithdrawalRequest;
+import org.brunocvcunha.coinpayments.model.CreateWithdrawalResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
@@ -25,7 +25,7 @@ import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsCreateWithdrawalRequest extends CoinPaymentsPostRequest<ResponseWrapper<CreateWithdrawalRequest>> {
+public class CoinPaymentsCreateWithdrawalRequest extends CoinPaymentsPostRequest<ResponseWrapper<CreateWithdrawalResponse>> {
 
     @NonNull
     private double amount;
@@ -56,8 +56,8 @@ public class CoinPaymentsCreateWithdrawalRequest extends CoinPaymentsPostRequest
     }
 
     @Override
-    public ResponseWrapper<CreateWithdrawalRequest> parseResult ( int resultCode, String content ) {
-        ResponseWrapper<CreateWithdrawalRequest> wrapper = parseJson( content, new TypeReference<ResponseWrapper<CreateWithdrawalRequest>>() {} );
+    public ResponseWrapper<CreateWithdrawalResponse> parseResult ( int resultCode, String content ) {
+        ResponseWrapper<CreateWithdrawalResponse> wrapper = parseJson( content, new TypeReference<ResponseWrapper<CreateWithdrawalResponse>>() {} );
         return wrapper;
     }
 }

@@ -16,27 +16,21 @@
 package org.brunocvcunha.coinpayments.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 /**
- * Search Result
+ * Balance Result
  * 
  * @author Bruno Candido Volpato da Cunha
  *
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasicInfoResponse {
-    private String username;
+public class BalanceResponse {
+	
+    private long balance;
     
-    @JsonProperty("merchant_id")
-    private String merchantId;
-    
-    private String email;
-
-    @JsonProperty("public_name")
-    private String publicName;
+    private double balancef;
 
 }

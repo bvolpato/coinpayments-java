@@ -15,48 +15,42 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
-
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
+import org.brunocvcunha.coinpayments.model.ConversionLimitsResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
-@RequiredArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsConversionLimitsRequest extends CoinPaymentsPostRequest<ResponseWrapper<ConversionLimitsResponse>> {
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
+    @NonNull
+    private String from;
+
+    @NonNull
+    private String to;
+
+	@Override
+	public String getUrl() {
+		return "";
+	}
 
     @Override
-    public String getUrl() {
-        return "";
+    public String getPayload () {
+        return "cmd=convert_limits" + "&from=" + from + "&to=" + to;
     }
-    
-    @Override
-    @SneakyThrows
-    public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
-    }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<ConversionLimitsResponse> parseResult(int resultCode, String content) {
+		ResponseWrapper<ConversionLimitsResponse> wrapper = parseJson( content, new TypeReference<ResponseWrapper<ConversionLimitsResponse>>() {} );
         return wrapper;
-    }
+	}
 
 }

@@ -15,28 +15,34 @@
  */
 package org.brunocvcunha.coinpayments.model;
 
+import java.math.BigInteger;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Search Result
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasicInfoResponse {
-    private String username;
+public class WithdrawalInfoResponse {
     
-    @JsonProperty("merchant_id")
-    private String merchantId;
+    @JsonProperty("time_created")
+    private String timeCreated;
     
-    private String email;
+    private String status;
+    
+    @JsonProperty("status_text")
+    private String statusText;
+    
+    private String coin;
+    
+    private BigInteger amount;
+    
+    private double amountf;
+    
+    @JsonProperty("send_address")
+    private String sendAddress;
 
-    @JsonProperty("public_name")
-    private String publicName;
-
+    @JsonProperty("send_txid")
+    private String sendTxid;
 }

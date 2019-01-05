@@ -15,28 +15,36 @@
  */
 package org.brunocvcunha.coinpayments.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Search Result
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasicInfoResponse {
-    private String username;
-    
-    @JsonProperty("merchant_id")
-    private String merchantId;
-    
-    private String email;
+public class GetProfileInfoResponse {
 
-    @JsonProperty("public_name")
-    private String publicName;
+    private String pbntag;
+
+    private String merchant;
+
+    @JsonProperty("profile_name")
+    private String profileName;
+
+    @JsonProperty("profile_url")
+    private String profileUrl;
+
+    @JsonProperty("profile_email")
+    private String profileEmail;
+
+    @JsonProperty("profile_image")
+    private String profileImage;
+
+    @JsonProperty("member_since")
+    private long memberSince;
+
+    private List<String> feedback;
 
 }

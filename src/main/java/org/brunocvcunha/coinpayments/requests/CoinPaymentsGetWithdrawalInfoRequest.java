@@ -15,48 +15,41 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
-
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
+import org.brunocvcunha.coinpayments.model.WithdrawalInfoResponse;
+import org.brunocvcunha.coinpayments.requests.CoinPaymentsGetTransactionInfoRequest.CoinPaymentsGetTransactionInfoRequestBuilder;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsGetWithdrawalInfoRequest  extends CoinPaymentsPostRequest<ResponseWrapper <WithdrawalInfoResponse>>   {
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
+	private String id;
 
-    @Override
-    public String getUrl() {
-        return "";
-    }
-    
-    @Override
-    @SneakyThrows
+	@Override
+	public String getUrl() {
+		return "";
+	}
+
+	@Override
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+        return "cmd=get_withdrawal_info" + "&id=" + id;
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
+	@Override
+	public ResponseWrapper<WithdrawalInfoResponse> parseResult(int resultCode, String content) {
+        ResponseWrapper<WithdrawalInfoResponse> wrapper = parseJson(content, new TypeReference<ResponseWrapper<WithdrawalInfoResponse>>() {});
         return wrapper;
-    }
+	}
 
 }

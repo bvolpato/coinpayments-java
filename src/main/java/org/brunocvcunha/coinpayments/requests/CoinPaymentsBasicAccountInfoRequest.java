@@ -16,15 +16,14 @@
 package org.brunocvcunha.coinpayments.requests;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import org.brunocvcunha.coinpayments.model.BasicInfoResponse;
-import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 /**
@@ -33,6 +32,7 @@ import lombok.SneakyThrows;
  * @author Bruno Candido Volpato da Cunha
  *
  */
+@NoArgsConstructor
 @Builder
 public class CoinPaymentsBasicAccountInfoRequest extends CoinPaymentsPostRequest<ResponseWrapper<BasicInfoResponse>> {
 

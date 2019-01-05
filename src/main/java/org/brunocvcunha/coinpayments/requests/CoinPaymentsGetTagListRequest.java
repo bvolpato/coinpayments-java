@@ -15,48 +15,35 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
+import java.util.List;
 
-import lombok.*;
-import org.brunocvcunha.coinpayments.model.RateResponse;
+import org.brunocvcunha.coinpayments.model.GetTagListResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-/**
- * Search GIFs Request
- * 
- * @author Bruno Candido Volpato da Cunha
- *
- */
-@RequiredArgsConstructor
-@AllArgsConstructor
-@Data
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Builder
-public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, RateResponse>>> {
+public class CoinPaymentsGetTagListRequest extends CoinPaymentsPostRequest<ResponseWrapper<List<GetTagListResponse>>> {
 
-    private boolean onlyAccepted = true;
-    
-    private boolean onlyShort = false;
-
+	@Override
+	public String getUrl() {
+		return "";
+	}
+	
     @Override
-    public String getUrl() {
-        return "";
-    }
-    
-    @Override
-    @SneakyThrows
     public String getPayload() {
-        return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
+        return "cmd=get_pbn_list";
     }
 
-
-    @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
-        ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
-        return wrapper;
-    }
+	@Override
+	public ResponseWrapper<List<GetTagListResponse>> parseResult(int resultCode, String content) {
+        ResponseWrapper<List<GetTagListResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<List<GetTagListResponse>>>() {});
+        return wrapper;		
+	}
 
 }
