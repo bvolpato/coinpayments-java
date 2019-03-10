@@ -19,6 +19,8 @@ import java.io.IOException;
 
 import javax.crypto.Mac;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
 import org.apache.http.HttpResponse;
@@ -35,6 +37,8 @@ import lombok.extern.log4j.Log4j;
  * @author brunovolpato
  *
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Log4j
 public abstract class CoinPaymentsPostRequest<T> extends CoinPaymentsRequest<T> {
 

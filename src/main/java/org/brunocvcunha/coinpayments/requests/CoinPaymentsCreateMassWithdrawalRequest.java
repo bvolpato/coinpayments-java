@@ -28,11 +28,11 @@ import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 @RequiredArgsConstructor
 @Data
 @Builder
+@EqualsAndHashCode(callSuper = true)
 public class CoinPaymentsCreateMassWithdrawalRequest extends CoinPaymentsPostRequest<ResponseWrapper<Map<String, CreateWithdrawalResponse>>> {
 
     @NonNull
     private List<Map<String, String>> wd;
-
 
     @Override
     public String getUrl () {
@@ -41,7 +41,14 @@ public class CoinPaymentsCreateMassWithdrawalRequest extends CoinPaymentsPostReq
 
     @Override
     public String getPayload () {
-        return "cmd=create_mass_withdrawal" + "&wd=" + wd;
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < wd.size(); i++){
+            Map<String, String> entries = wd.get(i);
+            for(Map.Entry<String, String> entry : entries.entrySet()) {
+                sb.append("&wd[wd").append(i).append("][").append(entry.getKey()).append("]").append("=").append(entry.getValue());
+            }
+        }
+        return "cmd=create_mass_withdrawal" + sb.toString();
     }
 
     @Override

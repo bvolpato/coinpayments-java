@@ -17,9 +17,14 @@ package org.brunocvcunha.coinpayments.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateWithdrawalResponse extends CreateTransferResponse {
 
     private double amount;
+    private String error;
+    private String note;
 }
