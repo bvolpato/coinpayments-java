@@ -18,6 +18,7 @@ package org.brunocvcunha.coinpayments.requests.base;
 import java.io.IOException;
 import java.io.InputStream;
 
+import lombok.*;
 import org.apache.http.client.ClientProtocolException;
 import org.brunocvcunha.coinpayments.CoinPayments;
 import org.brunocvcunha.inutils4j.MyStreamUtils;
@@ -26,15 +27,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Log4j
 public abstract class CoinPaymentsRequest<T> {
 
