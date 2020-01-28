@@ -45,4 +45,7 @@ public class CreateTransactionResponse {
     @JsonProperty("qrcode_url")
     private String qrcodeUrl;
 
+    @JsonProperty("dest_tag")
+    private String destinationTag;
+
 }
