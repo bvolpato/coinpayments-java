@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import lombok.extern.log4j.Log4j;
 import org.brunocvcunha.coinpayments.model.CreateTransactionResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -38,6 +39,7 @@ import lombok.SneakyThrows;
 @AllArgsConstructor
 @Data
 @Builder
+@Log4j
 public class CoinPaymentsCreateTransactionRequest
         extends CoinPaymentsPostRequest<ResponseWrapper<CreateTransactionResponse>> {
 
@@ -59,6 +61,7 @@ public class CoinPaymentsCreateTransactionRequest
     @Builder.Default private String invoice = "";
     @Builder.Default private String custom = "";
     @Builder.Default private String callbackUrl = "";
+    @Builder.Default private long timeout = 7200;           //expiration of transaction in seconds
 
     @Override
     public String getUrl() {
@@ -71,12 +74,13 @@ public class CoinPaymentsCreateTransactionRequest
         return "cmd=create_transaction" + "&amount=" + amount + "" + "&currency1=" + currencyPrice + "&currency2="
                 + currencyTransfer + "&address=" + address + "&buyer_email=" + buyerEmail + "&buyer_name=" + buyerName
                 + "&item_name=" + itemName + "&item_number=" + itemCode + "&invoice=" + invoice + "&custom=" + custom
-                + "&ipn_url=" + callbackUrl;
+                + "&ipn_url=" + callbackUrl + "&timeout=" + timeout;
     }
 
     @Override
     @SneakyThrows
     public ResponseWrapper<CreateTransactionResponse> parseResult(int statusCode, String content) {
+        log.debug("parsing CreateTransactionResponse:  "+ content + ", statusCode: " + statusCode);
         ResponseWrapper<CreateTransactionResponse> wrapper = parseJson(content,
                 new TypeReference<ResponseWrapper<CreateTransactionResponse>>() {
                 });

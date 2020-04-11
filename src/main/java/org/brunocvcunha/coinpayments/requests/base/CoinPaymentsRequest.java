@@ -85,7 +85,7 @@ public abstract class CoinPaymentsRequest<T> {
      */
     @SneakyThrows
     public <U> U parseJson(String str, Class<U> clazz) {
-        log.info("Reading " + clazz.getSimpleName() + " from " + str);
+        log.trace("Reading " + clazz.getSimpleName() + " from " + str);
         return new ObjectMapper().readValue(str, clazz);
     }
     
@@ -100,7 +100,7 @@ public abstract class CoinPaymentsRequest<T> {
      */
     @SneakyThrows
     public <U> U parseJson(String str, TypeReference<T> type) {
-        log.info("Reading " + type.getType() + " from " + str);
+        log.trace("Reading " + type.getType() + " from " + str);
         return new ObjectMapper().readValue(str, type);
     }
 
