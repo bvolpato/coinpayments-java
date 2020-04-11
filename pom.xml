@@ -19,7 +19,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.brunocvcunha.coinpayments</groupId>
 	<artifactId>coinpayments-java</artifactId>
-	<version>1.3-modified-SNAPSHOT</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>coinpayments-java</name>
 	<description>coinpayments-java</description>
