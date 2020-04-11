@@ -3,7 +3,7 @@ coinpayments-java
 
 [![Apache License](http://img.shields.io/badge/license-ASL-blue.svg)](https://github.com/brunocvcunha/coinpayments-java/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/brunocvcunha/coinpayments-java.svg)](https://travis-ci.org/brunocvcunha/coinpayments-java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments-java/coinpayments-java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments-java/coinpayments-java)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments/coinpayments-java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.brunocvcunha.coinpayments/coinpayments-java)
 [![Code Climate](https://codeclimate.com/github/brunocvcunha/coinpayments-java/badges/gpa.svg)](https://codeclimate.com/github/brunocvcunha/coinpayments-java)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -18,12 +18,12 @@ Download [the latest release JAR][1] or grab via Maven:
 <dependency>
   <groupId>org.brunocvcunha.coinpayments</groupId>
   <artifactId>coinpayments-java</artifactId>
-  <version>1.2</version>
+  <version>1.3</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'org.brunocvcunha.coinpayments:coinpayments-java:1.2'
+compile 'org.brunocvcunha.coinpayments:coinpayments-java:1.3'
 ```
 
 
