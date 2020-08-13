@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.brunocvcunha.coinpayments.model.GetConversionInfoResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -46,7 +47,7 @@ public class CoinPaymentsGetConversionInfoRequest
     }
 
 	@Override
-	public ResponseWrapper<GetConversionInfoResponse> parseResult(int resultCode, String content) {
+	public ResponseWrapper<GetConversionInfoResponse> parseResult(int resultCode, String content) throws JsonProcessingException {
         ResponseWrapper<GetConversionInfoResponse> wrapper = parseJson(content,
                 new TypeReference<ResponseWrapper<GetConversionInfoResponse>>() {
                 });

@@ -18,6 +18,7 @@ package org.brunocvcunha.coinpayments.requests.base;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.*;
 import org.apache.http.client.ClientProtocolException;
 import org.brunocvcunha.coinpayments.CoinPayments;
@@ -72,7 +73,7 @@ public abstract class CoinPaymentsRequest<T> {
      * @param content
      *            Content
      */
-    public abstract T parseResult(int resultCode, String content);
+    public abstract T parseResult(int resultCode, String content) throws JsonProcessingException;
 
     /**
      * Parses Json into type
@@ -84,7 +85,7 @@ public abstract class CoinPaymentsRequest<T> {
      * @return Result
      */
     @SneakyThrows
-    public <U> U parseJson(String str, Class<U> clazz) {
+    public <U> U parseJson(String str, Class<U> clazz) throws JsonProcessingException {
         log.trace("Reading " + clazz.getSimpleName() + " from " + str);
         return new ObjectMapper().readValue(str, clazz);
     }
@@ -99,7 +100,7 @@ public abstract class CoinPaymentsRequest<T> {
      * @return Result
      */
     @SneakyThrows
-    public <U> U parseJson(String str, TypeReference<T> type) {
+    public <U> U parseJson(String str, TypeReference<T> type) throws JsonProcessingException {
         log.trace("Reading " + type.getType() + " from " + str);
         return new ObjectMapper().readValue(str, type);
     }
@@ -114,7 +115,7 @@ public abstract class CoinPaymentsRequest<T> {
      * @return Result
      */
     @SneakyThrows
-    public T parseJson(InputStream is, Class<T> clazz) {
+    public T parseJson(InputStream is, Class<T> clazz) throws JsonProcessingException {
         return this.parseJson(MyStreamUtils.readContent(is), clazz);
     }
 

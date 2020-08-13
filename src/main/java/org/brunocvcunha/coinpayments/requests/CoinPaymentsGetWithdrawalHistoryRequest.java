@@ -17,6 +17,7 @@ package org.brunocvcunha.coinpayments.requests;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.model.WithdrawalHistoryResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -45,7 +46,7 @@ public class CoinPaymentsGetWithdrawalHistoryRequest extends CoinPaymentsPostReq
     }
 
 	@Override
-	public ResponseWrapper<Map<String, WithdrawalHistoryResponse>> parseResult(int resultCode, String content) {
+	public ResponseWrapper<Map<String, WithdrawalHistoryResponse>> parseResult(int resultCode, String content) throws JsonProcessingException {
         ResponseWrapper<Map<String, WithdrawalHistoryResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, WithdrawalHistoryResponse>>>() {});
         return wrapper;
 	}

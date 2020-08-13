@@ -15,14 +15,17 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import java.util.Map;
-
-import lombok.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.brunocvcunha.coinpayments.model.RateResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import java.util.Map;
 
 /**
  * Search GIFs Request
@@ -46,15 +49,13 @@ public class CoinPaymentsRatesRequest extends CoinPaymentsPostRequest<ResponseWr
     }
     
     @Override
-    @SneakyThrows
     public String getPayload() {
         return "cmd=rates&accepted=" + (onlyAccepted ? "1" : "0") + "&short=" + (onlyShort ? "1" : "0");
     }
 
 
     @Override
-    @SneakyThrows
-    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) {
+    public ResponseWrapper<Map<String, RateResponse>> parseResult(int statusCode, String content) throws JsonProcessingException {
         ResponseWrapper<Map<String, RateResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<Map<String, RateResponse>>>() {});
         return wrapper;
     }

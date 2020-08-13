@@ -15,12 +15,15 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import lombok.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.model.TransactionDetailsResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 
 /**
  * CoinPaymentsCreateTransactionRequest
@@ -43,14 +46,12 @@ public class CoinPaymentsGetTransactionInfoRequest
     }
 
     @Override
-    @SneakyThrows
     public String getPayload() {
         return "cmd=get_tx_info&txid=" + txid + "&full=1";
     }
 
     @Override
-    @SneakyThrows
-    public ResponseWrapper<TransactionDetailsResponse> parseResult(int statusCode, String content) {
+    public ResponseWrapper<TransactionDetailsResponse> parseResult(int statusCode, String content) throws JsonProcessingException {
         ResponseWrapper<TransactionDetailsResponse> wrapper = parseJson(content,
                 new TypeReference<ResponseWrapper<TransactionDetailsResponse>>() {
                 });

@@ -18,6 +18,7 @@ package org.brunocvcunha.coinpayments.requests;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.model.TransactionDetailsResponse;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -51,7 +52,7 @@ public class CoinPaymentsGetMultiTransactionInfoRequest extends CoinPaymentsPost
     }
 
 	@Override
-	public ResponseWrapper<List<TransactionDetailsResponse>> parseResult(int resultCode, String content) {
+	public ResponseWrapper<List<TransactionDetailsResponse>> parseResult(int resultCode, String content) throws JsonProcessingException {
         ResponseWrapper<List<TransactionDetailsResponse>> wrapper = parseJson(content,
                 new TypeReference<ResponseWrapper<List<TransactionDetailsResponse>>>() {
                 });
