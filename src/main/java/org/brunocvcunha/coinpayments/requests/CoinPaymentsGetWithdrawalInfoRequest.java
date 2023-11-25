@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.model.WithdrawalInfoResponse;
 import org.brunocvcunha.coinpayments.requests.CoinPaymentsGetTransactionInfoRequest.CoinPaymentsGetTransactionInfoRequestBuilder;
@@ -47,7 +48,7 @@ public class CoinPaymentsGetWithdrawalInfoRequest  extends CoinPaymentsPostReque
     }
 
 	@Override
-	public ResponseWrapper<WithdrawalInfoResponse> parseResult(int resultCode, String content) {
+	public ResponseWrapper<WithdrawalInfoResponse> parseResult(int resultCode, String content) throws JsonProcessingException {
         ResponseWrapper<WithdrawalInfoResponse> wrapper = parseJson(content, new TypeReference<ResponseWrapper<WithdrawalInfoResponse>>() {});
         return wrapper;
 	}

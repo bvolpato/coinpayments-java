@@ -17,6 +17,7 @@ package org.brunocvcunha.coinpayments.requests;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.brunocvcunha.coinpayments.model.ClaimTagResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -51,7 +52,7 @@ public class CoinPaymentsClaimTagRequest extends CoinPaymentsPostRequest<Respons
     }
 
 	@Override
-	public ResponseWrapper<List<ClaimTagResponse>> parseResult(int resultCode, String content) {
+	public ResponseWrapper<List<ClaimTagResponse>> parseResult(int resultCode, String content) throws JsonProcessingException {
         ResponseWrapper<List<ClaimTagResponse>> wrapper = parseJson(content, new TypeReference<ResponseWrapper<List<ClaimTagResponse>>>() {});
         return wrapper;
 	}

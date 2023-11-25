@@ -15,16 +15,13 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
+import lombok.SneakyThrows;
 import org.brunocvcunha.coinpayments.model.BasicInfoResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-
-import lombok.SneakyThrows;
 
 /**
  * Search GIFs Request
@@ -52,9 +49,6 @@ public class CoinPaymentsBasicAccountInfoRequest extends CoinPaymentsPostRequest
     @SneakyThrows
     public ResponseWrapper<BasicInfoResponse> parseResult(int statusCode, String content) {
         ResponseWrapper<BasicInfoResponse> wrapper = parseJson(content, new TypeReference<ResponseWrapper<BasicInfoResponse>>() {});
-
-        //ResponseWrapper<BasicInfoResponse> wrapper = parseJson(content, ResponseWrapper.class);
-        //wrapper.setResult(parseJson(new ObjectMapper().writeValueAsString(wrapper.getResult()), BasicInfoResponse.class)); //?j
         return wrapper;
     }
 

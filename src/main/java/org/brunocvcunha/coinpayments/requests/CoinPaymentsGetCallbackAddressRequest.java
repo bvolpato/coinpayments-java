@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
 import org.brunocvcunha.coinpayments.model.AddressResponse;
@@ -43,7 +44,7 @@ public class CoinPaymentsGetCallbackAddressRequest extends CoinPaymentsPostReque
     }
 
     @Override
-    public ResponseWrapper<AddressResponse> parseResult ( int resultCode, String content ) {
+    public ResponseWrapper<AddressResponse> parseResult ( int resultCode, String content ) throws JsonProcessingException {
         ResponseWrapper<AddressResponse> wrapper = parseJson( content, new TypeReference<ResponseWrapper<AddressResponse>>() {} );
         return wrapper;
     }

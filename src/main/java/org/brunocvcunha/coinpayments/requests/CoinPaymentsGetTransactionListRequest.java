@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
@@ -47,7 +48,7 @@ public class CoinPaymentsGetTransactionListRequest extends CoinPaymentsPostReque
     }
 
     @Override
-    public ResponseWrapper<List<String>> parseResult ( int resultCode, String content ) {
+    public ResponseWrapper<List<String>> parseResult ( int resultCode, String content ) throws JsonProcessingException {
         ResponseWrapper<List<String>> wrapper = parseJson( content, new TypeReference<ResponseWrapper<List<String>>>() {} );
         return wrapper;
     }

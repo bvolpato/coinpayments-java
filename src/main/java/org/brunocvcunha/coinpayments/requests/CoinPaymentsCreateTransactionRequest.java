@@ -15,19 +15,13 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.*;
 import lombok.extern.log4j.Log4j;
 import org.brunocvcunha.coinpayments.model.CreateTransactionResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 
 /**
  * CoinPaymentsCreateTransactionRequest
@@ -69,7 +63,6 @@ public class CoinPaymentsCreateTransactionRequest
     }
 
     @Override
-    @SneakyThrows
     public String getPayload() {
         return "cmd=create_transaction" + "&amount=" + amount + "" + "&currency1=" + currencyPrice + "&currency2="
                 + currencyTransfer + "&address=" + address + "&buyer_email=" + buyerEmail + "&buyer_name=" + buyerName
@@ -78,8 +71,7 @@ public class CoinPaymentsCreateTransactionRequest
     }
 
     @Override
-    @SneakyThrows
-    public ResponseWrapper<CreateTransactionResponse> parseResult(int statusCode, String content) {
+    public ResponseWrapper<CreateTransactionResponse> parseResult(int statusCode, String content) throws JsonProcessingException {
         log.debug("parsing CreateTransactionResponse:  "+ content + ", statusCode: " + statusCode);
         ResponseWrapper<CreateTransactionResponse> wrapper = parseJson(content,
                 new TypeReference<ResponseWrapper<CreateTransactionResponse>>() {

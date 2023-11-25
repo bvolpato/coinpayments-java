@@ -15,6 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.*;
 
@@ -52,7 +53,7 @@ public class CoinPaymentsCreateMassWithdrawalRequest extends CoinPaymentsPostReq
     }
 
     @Override
-    public ResponseWrapper<Map<String, CreateWithdrawalResponse>> parseResult ( int resultCode, String content ) {
+    public ResponseWrapper<Map<String, CreateWithdrawalResponse>> parseResult ( int resultCode, String content ) throws JsonProcessingException {
     	ResponseWrapper<Map<String, CreateWithdrawalResponse>> wrapper = parseJson( content, new TypeReference<ResponseWrapper<Map<String, CreateWithdrawalResponse>>>() {});
         return wrapper;
     }
