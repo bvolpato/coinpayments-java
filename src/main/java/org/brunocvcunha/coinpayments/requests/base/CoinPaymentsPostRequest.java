@@ -30,7 +30,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.brunocvcunha.coinpayments.CoinPaymentsConstants;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -39,7 +39,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Log4j
+@Slf4j
 public abstract class CoinPaymentsPostRequest<T> extends CoinPaymentsRequest<T> {
 
     @Override

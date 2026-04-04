@@ -15,7 +15,7 @@
  */
 package org.brunocvcunha.coinpayments.requests;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.brunocvcunha.coinpayments.model.CreateTransactionResponse;
 import org.brunocvcunha.coinpayments.model.ResponseWrapper;
 import org.brunocvcunha.coinpayments.requests.base.CoinPaymentsPostRequest;
@@ -39,7 +39,7 @@ import lombok.SneakyThrows;
 @AllArgsConstructor
 @Data
 @Builder
-@Log4j
+@Slf4j
 public class CoinPaymentsCreateTransactionRequest
         extends CoinPaymentsPostRequest<ResponseWrapper<CreateTransactionResponse>> {
 
