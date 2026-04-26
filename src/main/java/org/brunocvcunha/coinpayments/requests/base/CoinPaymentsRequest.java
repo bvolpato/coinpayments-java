@@ -27,12 +27,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Log4j
+@Slf4j
 public abstract class CoinPaymentsRequest<T> {
 
     @Getter
