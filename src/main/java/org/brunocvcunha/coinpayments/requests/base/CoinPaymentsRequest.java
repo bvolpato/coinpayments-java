@@ -99,7 +99,7 @@ public abstract class CoinPaymentsRequest<T> {
      * @return Result
      */
     @SneakyThrows
-    public <U> U parseJson(String str, TypeReference<T> type) {
+    public <U> U parseJson(String str, TypeReference<U> type) {
         log.trace("Reading " + type.getType() + " from " + str);
         return new ObjectMapper().readValue(str, type);
     }
